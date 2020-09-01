@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Contact } from '../domain/contact';
+import { Contact } from 'src/app/domain/contact';
 
 @Component({
   selector: 'app-add-user',
