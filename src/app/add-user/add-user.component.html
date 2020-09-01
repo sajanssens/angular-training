@@ -1,0 +1,4 @@
+<form [formGroup]="myFormGroup" (ngSubmit)="handleAdd($event)">
+    <input (input)="onChange($event)" type="text" formControlName="name"><span *ngIf="myFormGroup.invalid">*</span>
+    <button [disabled]="myFormGroup.invalid">Add</button>
+</form>

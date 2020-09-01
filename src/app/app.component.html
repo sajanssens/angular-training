@@ -8,17 +8,11 @@
 
 
 <input placeholder="Search" type="text" [formControl]="searchControl" id="search">
-<table id="users">
-    <tr *ngFor="let user of filteredUsers">
-        <td class="user">{{user.name}}</td>
-    </tr>
-</table>
+<app-users [users]="filteredUsers"></app-users>
 
 <!-- <h3>Model driven form</h3> -->
-<form [formGroup]="myFormGroup" (submit)="add()">
-    <input (input)="onChange($event)" type="text" formControlName="name"><span *ngIf="myFormGroup.invalid">*</span>
-    <button [disabled]="myFormGroup.invalid">Add</button>
-</form>
+<!-- als output event app-add-user.add afgaat, roep dan addMe aan -->
+<app-add-user (add)="addMe($event)"></app-add-user>
 
 <!-- Template driven----------------<BR>
 <form (ngSubmit)="save()" novalidate #f="ngForm">

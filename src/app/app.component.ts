@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Contact } from './domain/contact';
 
 
@@ -15,7 +15,6 @@ export class AppComponent {
   name: string;
   postalcode: string;
   filter: string;
-  myFormGroup: FormGroup;
   searchControl: FormControl;
 
   users: Contact[] = [
@@ -29,43 +28,28 @@ export class AppComponent {
 
   filteredUsers = [...this.users];
 
-  constructor(private fb: FormBuilder) { // fb is injected
-    /* this.myFormGroup = new FormGroup({
-      name: new FormControl('', [Validators.required])
-    }); */
-
-    // or shorter:
-    this.myFormGroup = this.fb.group({
-      name: ['', [Validators.required]]
-    });
-
+  constructor(private fb: FormBuilder) { // fb is injected   
     this.searchControl = this.fb.control('');
     this.searchControl.valueChanges.subscribe(newFilter => {
       this.doFiltering(newFilter);
     });
   }
 
-  add() {
-    // console.log(this.myFormGroup.value);    
-    // console.log(this.postalcode);
-    this.users.push(this.myFormGroup.value);
-    this.filteredUsers.push(this.myFormGroup.value);
-    this.myFormGroup.reset();
-  }
+
 
   flip() {
     this.show = !this.show;
   }
 
-  onChange(e: InputEvent): void {
-    const input = e.target as HTMLInputElement;
-    const inVal = input.value;
-    this.name = inVal;
-  }
 
   doFiltering(value: string) {
     this.filter = value;
     this.filteredUsers = this.users.filter(u => u.name.indexOf(value) >= 0);
+  }
+
+  addMe(c: Contact) {
+    this.users.push(c);
+    this.filteredUsers = [...this.users];
   }
 
 }
