@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Contact } from './domain/contact';
+
 
 @Component({
   selector: 'app-root',
@@ -7,22 +9,24 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'test';
+  title = 'Users';
   color = 'red';
-  show = true;
+  show = false;
   name: string;
+  postalcode: string;
   filter: string;
   myFormGroup: FormGroup;
   searchControl: FormControl;
 
-  readonly users = [
-    'Sander',
-    'Bram',
-    'Ruben',
-    'Jochem',
-    'Jonas',
-    'Glenn'
+  users: Contact[] = [
+    { name: 'Sander' },
+    { name: 'Bram' },
+    { name: 'Ruben' },
+    { name: 'Jochem' },
+    { name: 'Jonas' },
+    { name: 'Glenn' }
   ];
+
   filteredUsers = [...this.users];
 
   constructor(private fb: FormBuilder) { // fb is injected
@@ -41,8 +45,12 @@ export class AppComponent {
     });
   }
 
-  save() {
-    console.log(this.myFormGroup.value);
+  add() {
+    // console.log(this.myFormGroup.value);    
+    // console.log(this.postalcode);
+    this.users.push(this.myFormGroup.value);
+    this.filteredUsers.push(this.myFormGroup.value);
+    this.myFormGroup.reset();
   }
 
   flip() {
@@ -57,7 +65,7 @@ export class AppComponent {
 
   doFiltering(value: string) {
     this.filter = value;
-    this.filteredUsers = this.users.filter(name => name.indexOf(value) >= 0);
+    this.filteredUsers = this.users.filter(u => u.name.indexOf(value) >= 0);
   }
 
 }

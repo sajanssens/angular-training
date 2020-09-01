@@ -1,26 +1,35 @@
-<h1>{{title}}</h1>
-<p [style.color]="color">Dit is rood</p>
-<button (click)=flip()>flip</button>
-<p *ngIf=show>Dit is optioneel</p>
+<h1 id="title">{{title}}</h1>
+<!-- <p [style.color]="color">Dit is rood</p>
+<p *ngIf=show>Dit is optioneel</p> -->
 
 <!-- <form>
     <input (input)="onChange($event)" type="text" name="name">
 </form> -->
-----------------<BR>
-<input placeholder="Search" type="text" [formControl]="searchControl">
-<table>
+
+
+<input placeholder="Search" type="text" [formControl]="searchControl" id="search">
+<table id="users">
     <tr *ngFor="let user of filteredUsers">
-        <td>{{user}}</td>
+        <td class="user">{{user.name}}</td>
     </tr>
 </table>
 
-----------------<BR>
-<form [formGroup]="myFormGroup" (ngSubmit)="save()">
-    <input (input)="onChange($event)" type="text" formControlName="name"><span *ngIf="myFormGroup.invalid">*</span><BR>
-    <button [disabled]="myFormGroup.invalid">Save</button>
+<!-- <h3>Model driven form</h3> -->
+<form [formGroup]="myFormGroup" (submit)="add()">
+    <input (input)="onChange($event)" type="text" formControlName="name"><span *ngIf="myFormGroup.invalid">*</span>
+    <button [disabled]="myFormGroup.invalid">Add</button>
 </form>
 
-----------------<BR>
+<!-- Template driven----------------<BR>
+<form (ngSubmit)="save()" novalidate #f="ngForm">
+    <label for="inputPostalCode">Postal code: </label>
+    <input (input)="onChange($event)" type="text" [(ngModel)]="postalcode" id="inputPostalCode" name="vvvv" #pc="ngModel"
+        pattern="^[a-zA-Z]{4}[0-9]{2}$">
+    <span *ngIf="pc.dirty && pc.invalid">Invalid. </span>
+    <button [disabled]="f.invalid">Save</button>
+</form> -->
 
-<pre>Name:{{name}}</pre>
-<pre>Filter:{{filter | json}}</pre>
+<p><button (click)="flip()">Debug</button></p>
+<div *ngIf=show>
+    <pre>Users: {{users | json}}</pre>
+</div>
