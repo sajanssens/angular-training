@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 import { UsersComponent } from './users.component';
 
-fdescribe('UsersComponent', () => {
+describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
 
@@ -25,7 +25,7 @@ fdescribe('UsersComponent', () => {
   });
 });
 
-fdescribe('when parent has 6 users', () => {
+describe('UsersComponent when parent has 6 users', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
 
