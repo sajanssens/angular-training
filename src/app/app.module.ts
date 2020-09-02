@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UsersComponent } from './components/users/users.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { SelectorDirective } from './directives/selector.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    AddUserComponent
+    AddUserComponent,
+    SelectorDirective
   ],
   imports: [
     BrowserModule,
