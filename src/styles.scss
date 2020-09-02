@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+input.ng-touched.ng-valid {
+	border-left: 5px solid green;
+}
+input.ng-touched.ng-invalid {
+	border-left: 5px solid red;
+}
+// form div {
+// 	display: flex;
+// 	margin: 5px;
+// }
+
+// .flex {
+// 	display: flex;
+// }
+// .flex form {
+// 	margin-right: 50px;
+// }
