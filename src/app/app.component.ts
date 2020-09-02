@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Contact } from './domain/contact';
-
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,31 +16,18 @@ export class AppComponent {
   postalcode: string;
   filter: string;
   searchControl: FormControl;
+  users: Contact[];
+  filteredUsers: Contact[];
 
-  users: Contact[] = [
-    { name: 'Sander' },
-    { name: 'Bram' },
-    { name: 'Ruben' },
-    { name: 'Jochem' },
-    { name: 'Jonas' },
-    { name: 'Glenn' }
-  ];
-
-  filteredUsers = [...this.users];
-
-  constructor(private fb: FormBuilder) { // fb is injected   
+  constructor(private fb: FormBuilder, private us: UserService) { // fb, us are injected   
     this.searchControl = this.fb.control('');
-    this.searchControl.valueChanges.subscribe(newFilter => {
-      this.doFiltering(newFilter);
-    });
+    this.searchControl.valueChanges.subscribe(newFilter => this.doFiltering(newFilter));
+    this.users = us.users();
+    this.filteredUsers  = [...this.users];
   }
 
 
-
-  flip() {
-    this.show = !this.show;
-  }
-
+  flip() { this.show = !this.show; }
 
   doFiltering(value: string) {
     this.filter = value;
