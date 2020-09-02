@@ -4,16 +4,22 @@ import { Contact } from '../domain/contact';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService { 
+export class UserService {
+
+  data: Contact[] = [
+    { name: 'Sander' },
+    { name: 'Bram' },
+    { name: 'Ruben' },
+    { name: 'Jochem' },
+    { name: 'Jonas' },
+    { name: 'Glenn' }
+  ];
+
+  add(c: Contact) {
+    this.data.push(c);
+  }
 
   users(): Contact[] {
-    return [
-      { name: 'Sander' },
-      { name: 'Bram' },
-      { name: 'Ruben' },
-      { name: 'Jochem' },
-      { name: 'Jonas' },
-      { name: 'Glenn' }
-    ];
+    return this.data;
   }
 }

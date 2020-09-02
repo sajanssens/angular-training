@@ -34,8 +34,8 @@ export class AppComponent {
     this.filteredUsers = this.users.filter(u => u.name.indexOf(value) >= 0);
   }
 
-  addMe(c: Contact) {
-    this.users.push(c);
+  addMe(c: Contact) {    
+    this.us.add(c);
     this.filteredUsers = [...this.users];
   }
 
