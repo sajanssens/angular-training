@@ -1,20 +1,12 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Sander"
+      "name": "Bram",
+      "id": 7
     },
     {
-      "id": 2,
-      "name": "Bram"
-    },
-    {
-      "id": 3,
-      "name": "Ruben"
-    },
-    {
-      "id": 4,
-      "name": "Jochem"
+      "name": "Sander",
+      "id": 8
     }
   ]
 }

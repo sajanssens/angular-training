@@ -7,11 +7,13 @@ import { User } from "../domain/user";
 })
 export class UserGateway {
 
+  private readonly url = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) { }
 
-  get(): Observable<User[]> { return this.http.get<User[]>('http://localhost:3000/users'); }
-  post(u: User): Observable<User> { return this.http.post<User>('http://localhost:3000/users', u); }
-  delete(u: User): Observable<unknown> { return this.http.delete<User>(`http://localhost:3000/users/${u.id}`); }
+  get(id: number): Observable<User> { return this.http.get<User>(`${this.url}/${id}`); }
+  getAll(): Observable<User[]> { return this.http.get<User[]>(this.url); }
+  post(u: User): Observable<User> { return this.http.post<User>(this.url, u); }
+  delete(u: User): Observable<unknown> { return this.http.delete<User>(`${this.url}/${u.id}`); }
 
 }

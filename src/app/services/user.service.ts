@@ -9,20 +9,14 @@ import { UserGateway } from './usergateway.service';
 })
 export class UserService {
 
+
   private userSubject = new Subject<User[]>();
 
-  constructor(private userGateway: UserGateway) {
-  }
+  constructor(private userGateway: UserGateway) { }
 
-  add(u: User) {
-    this.userGateway.post(u).subscribe(u => console.log('User added:', u));
-  }
+  users(): Observable<User[]> { return this.userGateway.getAll(); }
+  get(id: number): Observable<User> { return this.userGateway.get(id); }
+  add(u: User) { this.userGateway.post(u).subscribe(u => console.log('User added:', u)); }
+  del(u: User) { this.userGateway.delete(u).subscribe(u => console.log('User deleted:', u)); }
 
-  del(u: User) {   
-    this.userGateway.delete(u).subscribe(u => console.log('User deleted:', u));
-  }
-
-  users(): Observable<User[]> {
-    return this.userGateway.get();
-  }
 }
