@@ -8,7 +8,7 @@
 
 <div class="flex">
     <input placeholder="Search" type="text" [formControl]="searchControl" id="search">
-    <app-users [users]="users | async" (delete)="delMe($event)"></app-users>
+    <app-users [users]="users$ | async" (delete)="delMe($event)"></app-users>
 
     <!-- <h3>Model driven form</h3> -->
     <!-- als output event app-add-user.add afgaat, roep dan addMe aan -->
@@ -26,5 +26,5 @@
 </div>
 <p><button (click)="flip()">Debug</button></p>
 <div *ngIf=show>
-    <pre>Users: {{users | async | json}}</pre>
+    <pre>Users: {{users$ | async | json}}</pre>
 </div>
