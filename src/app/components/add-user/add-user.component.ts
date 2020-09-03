@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Contact } from 'src/app/domain/contact';
+import { User } from 'src/app/domain/user';
 
 @Component({
   selector: 'app-add-user',
@@ -9,7 +9,7 @@ import { Contact } from 'src/app/domain/contact';
 })
 export class AddUserComponent implements OnInit {
 
-  @Output() add = new EventEmitter<Contact>();
+  @Output() add = new EventEmitter<User>();
 
   myFormGroup: FormGroup;
   name: string;

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Contact } from 'src/app/domain/contact';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/domain/user';
 
 
 @Component({
@@ -9,11 +9,16 @@ import { Contact } from 'src/app/domain/contact';
 })
 export class UsersComponent implements OnInit {
 
-  @Input() users: Contact[];  
+  @Input() users: User[];
+  @Output() delete = new EventEmitter<User>();;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  del(c: User) {
+    this.delete.emit(c);
   }
 
 }

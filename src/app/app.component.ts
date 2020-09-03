@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Contact } from './domain/contact';
+import { User } from './domain/user';
 import { UserService } from './services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +17,14 @@ export class AppComponent {
   postalcode: string;
   filter: string;
   searchControl: FormControl;
-  users: Contact[];
-  filteredUsers: Contact[];
+  users: Observable<User[]>;
+  filteredUsers: User[];
 
   constructor(private fb: FormBuilder, private us: UserService) { // fb, us are injected   
     this.searchControl = this.fb.control('');
-    this.searchControl.valueChanges.subscribe(newFilter => this.doFiltering(newFilter));
-    this.users = us.users();
-    this.filteredUsers  = [...this.users];
+    this.searchControl.valueChanges.subscribe(newFilter => this.doFiltering(newFilter));    
+    this.users = this.us.users();
+    // this.filteredUsers = [...this.users];
   }
 
 
@@ -31,12 +32,17 @@ export class AppComponent {
 
   doFiltering(value: string) {
     this.filter = value;
-    this.filteredUsers = this.users.filter(u => u.name.indexOf(value) >= 0);
+    // this.filteredUsers = this.users.filter(u => u.name.indexOf(value) >= 0);
   }
 
-  addMe(c: Contact) {    
-    this.us.add(c);
-    this.filteredUsers = [...this.users];
+  addMe(c: User) {
+    // this.us.add(c);
+    // this.filteredUsers = [...this.users];
+  }
+
+  delMe(c: User) {    
+    // this.us.del(c);
+    // this.filteredUsers = [...this.users];
   }
 
 }
