@@ -14,6 +14,6 @@ export class UserGateway {
   get(id: number): Observable<User> { return this.http.get<User>(`${this.url}/${id}`); }
   getAll(): Observable<User[]> { return this.http.get<User[]>(this.url); }
   post(u: User): Observable<User> { return this.http.post<User>(this.url, u); }
-  delete(u: User): Observable<unknown> { return this.http.delete<User>(`${this.url}/${u.id}`); }
+  delete(u: User): Observable<unknown> { return this.http.delete(`${this.url}/${u.id}`); }
 
 }

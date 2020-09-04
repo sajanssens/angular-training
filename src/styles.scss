@@ -5,6 +5,15 @@ input.ng-touched.ng-valid {
 input.ng-touched.ng-invalid {
 	border-left: 5px solid red;
 }
+#content{
+	margin: 10px;
+	border: 0px solid lightslategrey;	
+}
+#debug{
+	margin-top: 10px;
+	border: 2px solid lightslategrey;
+	width: 500px;
+}
 // form div {
 // 	display: flex;
 // 	margin: 5px;

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersComponent } from './users.component';
+import { UsersContainerComponent } from './users-container.component';
 
 describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+  let component: UsersContainerComponent;
+  let fixture: ComponentFixture<UsersContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ UsersContainerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(UsersContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,7 +25,7 @@ describe('UsersComponent', () => {
 
 
   it(`should have as title 'Users'`, () => {
-    const fixture = TestBed.createComponent(UsersComponent);
+    const fixture = TestBed.createComponent(UsersContainerComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Users');
   });

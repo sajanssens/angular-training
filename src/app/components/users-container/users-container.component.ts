@@ -5,14 +5,15 @@ import { map } from 'rxjs/operators';
 import { User } from 'src/app/domain/user';
 import { UserService } from 'src/app/services/user.service';
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-users-container',
+  templateUrl: './users-container.component.html',
+  styleUrls: ['./users-container.component.scss']
 })
-export class UsersComponent {
+export class UsersContainerComponent {
 
   title = 'Users';
   color = 'red';
+  debug = true;
   show = false;
   name: string;
   postalcode: string;
@@ -24,10 +25,12 @@ export class UsersComponent {
   constructor(private fb: FormBuilder, private us: UserService) { // fb, us are injected   
     this.searchControl = this.fb.control('');
     // this.searchControl.valueChanges.subscribe(newFilter => this.doFiltering(newFilter));    
-    this.users$ = this.us.users();
-    this.filteredUsers$ = combineLatest(this.searchControl.valueChanges, this.users$).pipe(
-      map(([myFilter, users]) => {
-        return this.doFiltering(users, myFilter);
+    
+    this.users$ = this.us.users$;
+
+    this.filteredUsers$ = combineLatest(this.users$, this.searchControl.valueChanges).pipe(
+      map(([users, value]) => {
+        return this.doFiltering(users, value);
       })
     );
   }

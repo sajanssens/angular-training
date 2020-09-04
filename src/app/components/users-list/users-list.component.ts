@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/domain/user';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { User } from 'src/app/domain/user';
 })
 export class UsersListComponent implements OnInit {
 
-  @Input() users: User[];
+  @Input() users$: Observable<User[]>;
   @Output() delete = new EventEmitter<User>();;
 
   constructor() { }

@@ -1,0 +1,12 @@
+<h1 class="mat-display-1" id="title">{{title}}</h1>
+
+<input placeholder="Search" type="text" [formControl]="searchControl" id="search">
+<app-users-list [users$]="users$" (delete)="delMe($event)"></app-users-list>
+<app-add-user (add)="addMe($event)"></app-add-user>
+
+<div id="debug">
+    <mat-button-toggle *ngIf=debug (click)="flip()">Debug</mat-button-toggle>
+    <div *ngIf=show>
+        <pre>Users: {{users$ | async | json}}</pre>
+    </div>
+</div>
