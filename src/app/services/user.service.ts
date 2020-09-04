@@ -21,12 +21,11 @@ export class UserService {
 
   constructor(private userGateway: UserGateway) { }
 
-  users(): void { this.userGateway.getAll().subscribe(this.triggerUpdate) }
-  add(u: User) { this.userGateway.post(u).subscribe(this.triggerUpdate) }
-  del(u: User): void { this.userGateway.delete(u).subscribe(this.triggerUpdate) }
+  add(u: User) { this.userGateway.post(u).subscribe(this.triggerUpdate()) }
+  del(u: User): void { this.userGateway.delete(u).subscribe(this.triggerUpdate()) }
 
   get(id: number): Observable<User> { return this.userGateway.get(id); }
   
-  private triggerUpdate(): (value: User[]) => void { return () => this.updateHappened$.next(undefined); }  
+  private triggerUpdate() { return () => this.updateHappened$.next(undefined); }  
 
 }
