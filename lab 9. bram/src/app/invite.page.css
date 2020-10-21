@@ -1,3 +1,7 @@
 form div[formArrayName="dates"] {
     display: block;
 }
+
+form div[formArrayName="contacts"] li {
+    list-style-type: none;
+}

@@ -4,19 +4,18 @@
         <label for="event">Event</label>
         <input type="text" id="event" formControlName="event">
         <span *ngIf="inviteForm.get('event').touched && inviteForm.get('event').invalid">*</span>
-        <span *ngIf="inviteForm.get('event').touched && inviteForm.get('event').errors?.required">Vul in aub</span>
-        <span *ngIf="inviteForm.get('event').touched && inviteForm.get('event').errors?.pattern">Alleen letters
-            graag</span>
     </div>
 
     <div formArrayName="dates">
-		<div *ngFor="let _ of nrOfPossibleDatesArray; let i = index" [formGroupName]="i">
-			<label [for]="'date_' + i">Option {{i + 1}}</label>
-			<input type="date" [id]="'date_' + i" formControlName="date">
-		</div>
-	</div>
+        <h3>Select dates</h3>
+        <div *ngFor="let _ of nrOfPossibleDatesArray; let i = index" [formGroupName]="i">
+            <label [for]="'date_' + i">Option {{i + 1}}</label>
+            <input type="date" [id]="'date_' + i" formControlName="date">
+        </div>
+    </div>
 
     <div formArrayName="contacts">
+        <h3>Select attendees</h3>
         <ul>
             <li *ngFor="let contact of contacts; let i = index" [formGroupName]="i">
                 <input type="hidden" formControlName="id">

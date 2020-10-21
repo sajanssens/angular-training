@@ -5,7 +5,7 @@ import { ContactService } from './services/contact.service';
 
 @Component({
   templateUrl: './invite.page.html',
-	styleUrls: ['./invite.page.css']
+  styleUrls: ['./invite.page.css']
 })
 export class InvitePage implements OnInit {
   contacts: Contact[];
@@ -29,8 +29,6 @@ export class InvitePage implements OnInit {
       // set up the contacts portion of the form
       let formContacts = <FormArray>this.inviteForm.get('contacts');
       for (let c of contacts) {
-        console.log(c);
-
         formContacts.push(this.fb.group({
           id: [c.id, Validators.required],
           selected: [false]
@@ -40,6 +38,7 @@ export class InvitePage implements OnInit {
 
     // set up the dynamic dates portion of the form
     let dates = [];
+    // let dates = <FormArray>this.inviteForm.get('dates');
     for (let i = 0; i < this.nrOfPossibleDates; i++) {
       dates.push(this.fb.group({
         date: ['', Validators.required]
@@ -49,7 +48,7 @@ export class InvitePage implements OnInit {
     this.inviteForm = this.fb.group({
       event: ['', [Validators.required]],
       dates: this.fb.array(dates),
-      contacts: this.fb.array([]) // contacts are filled when they've been retrieved
+      contacts: this.fb.array([]) // intially [], then contacts are filled when they're retrieved
     });
 
   }
