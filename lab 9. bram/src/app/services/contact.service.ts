@@ -8,7 +8,7 @@ import { Contact } from '../models/contact';
 @Injectable({ providedIn: 'root' })
 export class ContactService {
 
-	private url = 'http://localhost:9688/contacts';
+	private url = 'http://localhost:3000/contacts';
 
 	contactsUpdated$ = new Subject<Contact[]>(); // subject is an observable (i.e. extends it), so anyone who's interested in it can listen to updates
 
@@ -41,7 +41,7 @@ export class ContactService {
 	
 	contacts$ = this.updateHappened$.pipe(
 		startWith(undefined),
-		switchMap(() => this.getContacts()),
+		switchMap(() => this.http.get<Contact[]>(this.url)),
 		shareReplay(1) // caching
 	);
 
